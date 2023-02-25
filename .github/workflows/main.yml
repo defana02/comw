@@ -1,24 +1,16 @@
-name: Har Pito
+name: Mohi
  
-on: 
-  workflow_dispatch:
-    inputs:
-      authcode:
-        description: 'masukin CRD codenya'
-        required: true
-      pincode:
-        description: 'Buat pin 6 digit'
-        required: true
+on: workflow_dispatch
  
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: windows-2019
  
     steps:
     - uses: actions/checkout@v2
     - name: Initializing Setup
       run: ./setup.ps1
     - name: Starting CRD
-      run: ${{ secrets.AUTHCODE }} -pin=${{  secrets.PINCODE }}
+      run: ${{ secrets.AUTHCODE }} -pin=${{ secrets.PINCODE }}
     - name: Keep Alive
       run: ./timeout.ps1
