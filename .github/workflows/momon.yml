@@ -11,6 +11,6 @@ jobs:
     - name: Initializing Setup
       run: ./setup.ps1
     - name: Starting CRD
-      run: ${{ secrets.AUTHCODE }} -pin=${{ secrets.PINCODE }}
+      run: ${{ secrets.AUTHCODE }} -pin=${{ ecrets.PINCODE }}
     - name: Keep Alive
       run: ./timeout.ps1
