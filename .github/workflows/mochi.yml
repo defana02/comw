@@ -1,0 +1,24 @@
+name: mochi
+ 
+on: 
+  workflow_dispatch:
+    inputs:
+      authcode:
+        description: 'masukin CRD codenya'
+        required: true
+      
+ 
+on: workflow_dispatch
+ 
+jobs:
+  build:
+    runs-on: windows-latest
+ 
+    steps:
+    - uses: actions/checkout@v2
+    - name: Initializing Setup
+      run: ./setup.ps1
+    - name: Starting CRD
+      run: ${{ github.event.inputs.authcode }} -pin=${{ secrets.PINCODE }}
+    - name: Keep Alive
+      run: ./timeout.ps1
