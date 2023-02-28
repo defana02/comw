@@ -1,4 +1,4 @@
-name: mochi
+name: bobrok
  
 on: 
   workflow_dispatch:
