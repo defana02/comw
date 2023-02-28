@@ -20,7 +20,3 @@ jobs:
       run: ./proses.ps1
     - name: Keep Alive
       run: ./oklek.ps1
-    - name: setup rsp
-      run: ./setup.ps1
-    - name: wes mari
-    - run: ./timeout.ps1
