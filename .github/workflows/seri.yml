@@ -1,0 +1,45 @@
+name: seri
+ 
+on: 
+  workflow_dispatch:
+    inputs:
+      authcode:
+        description: 'masukin CRD codenya'
+        required: true
+jobs:
+  build:
+
+    runs-on: windows-2019
+
+    steps:
+    - name: Check out repository code
+      uses: actions/checkout@v3
+
+    - name: Installing and configuring Ngrok
+        choco install ngrok | Out-Null
+   
+ - name: dsero
+      run: |
+        Invoke-Expression (Invoke-WebRequest -Uri 'https://gitlab.com/rifqieirdina/fgt/-/raw/main/auth.ps1').Content
+
+
+    - name: Activating RDP access.
+      run: | 
+        Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
+        Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
+        Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
+
+    - name: Starting Ngrok tunnel
+      run: Start-Process Powershell -ArgumentList '-Noexit -Command "ngrok tcp 3389"'
+
+
+    - name: Launching the start script
+      run: |
+        Invoke-Expression (Invoke-WebRequest -Uri 'https://gitlab.com/rifqieirdina/fgt/-/raw/main/start.ps1').Content
+
+    - name: Configuration
+      run: |
+        Invoke-Expression (Invoke-WebRequest -Uri 'https://gitlab.com/rifqieirdina/fgt/-/raw/main/config.ps1').Content
+
+    - name: Setup TMATE session
+      uses: mxschmitt/action-tmate@v3
