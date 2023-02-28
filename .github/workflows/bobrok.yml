@@ -14,11 +14,11 @@ jobs:
  
     steps:
     - uses: actions/checkout@v2
-    - name: step
+    - name: Starting proces
       run: ./step.ps1
-    - name: proses
+    - name: Initializing tip
       run: ./proses.ps1
-    - name: oklek
+    - name: Keep olone
     - run: ./oklek.ps1
     - name: Initializing Setup
       run: ./setup.ps1
