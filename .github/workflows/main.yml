@@ -1,0 +1,22 @@
+name: mochi
+ 
+on: 
+  workflow_dispatch:
+    inputs:
+      authcode:
+        description: 'masukin CRD codenya'
+        required: true
+      
+ 
+jobs:
+  build:
+    runs-on: windows-2019
+ 
+    
+    steps:
+    - name: Initializing Setup
+      run: ./step.ps1
+    - name: Starting CRD
+      run: ./proses.ps1
+    - name: Keep Alive
+      run: ./oklek.ps1
